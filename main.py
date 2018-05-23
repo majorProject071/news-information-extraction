@@ -77,7 +77,7 @@ else:
     injuryNo = convertNum(injury)
 print("Injury No:")
 print(injury, actualinjury, injuryNo)
-# print("\n No of injured people: " + str(injuryNo))
+print("\n No of injured people: " + str(injuryNo))
 
 tokenized_words = news.split_words()
 tagger = Tagger(tokenized_words)
