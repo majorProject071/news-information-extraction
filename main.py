@@ -23,22 +23,22 @@ from modules.getdeathinjury import *
 # Police said that they have impounded the motorbike and arrested the rider."""
 
 
-news_story = """fifty eight persons died and 24 others were injured when a passenger bus Lu 2 Kha 291 plunged into Trishuli River in between Fisling and Chumlingtar of Chitwan district on Wednesday.
-There were 28 persons on board the ill-fated.
-Police suspect that the incident might have occurred after the bus hit a truck coming from the wrong lane.  Police have impounded the truck and arrested its driver for investigation.
-"""
+# news_story = """fifty eight persons died and 24 others were injured when a passenger bus Lu 2 Kha 291 plunged into Trishuli River in between Fisling and Chumlingtar of Chitwan district on Wednesday.
+# There were 28 persons on board the ill-fated.
+# Police suspect that the incident might have occurred after the bus hit a truck coming from the wrong lane.  Police have impounded the truck and arrested its driver for investigation.
+# """
 
-# news_story = """A woman died after being hit by a bus in Sinamangal of Kathmandu on Monday.
-#
-# The victim has been identified as Goshan Mikrani Begham (49) of Sarlahi.
-#
-#
-#
-# Critically injured in the incident, she was rushed to the Bansbari-based Neuro Hospital where she breathed her last during the course of treatment, police said.
-#
-# The incident took place at around 7 am yesterday.
-#
-# Police said that they have impounded the vehicle Ba 2 Kha 7085 and arrested its driver for investigation."""
+news_story = """A woman died after being hit by a bus in Sinamangal of Kathmandu on Monday.
+
+The victim has been identified as Goshan Mikrani Begham (49) of Sarlahi.
+
+
+
+Critically injured in the incident, she was rushed to the Bansbari-based Neuro Hospital where she breathed her last during the course of treatment, police said.
+
+The incident took place at around 7 am yesterday.
+
+Police said that they have impounded the vehicle Ba 2 Kha 7085 and arrested its driver for investigation."""
 
 # news_story = """
 # A person died in a road accident at Balaju in Kathmandu on Monday night.
@@ -108,5 +108,4 @@ data_extractor.day(news_story)
 
 print("\nThe vehicles involved are:")
 data_extractor.vehicle()
-
-# trying to push
+# print("new")fdfd
