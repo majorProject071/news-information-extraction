@@ -49,60 +49,53 @@ news = Tokenize(news_story)
 
 #The model to find the death number takes the splited sentences to find the
 # numer of death
-splited_sen = nltk.sent_tokenize(news_story)
+splited_sentences = nltk.sent_tokenize(news_story)
 # print(splited_sen)
 # sys.exit()
 # Get death count and injury count
 
-death = death_no(splited_sen)
-if death == "None":
-    actualdeath = death
-    deathNo = 0
-else:
-    actualdeath = remove_date(death)
-    deathNo = convertNum(death)
-print("Death No: ")
-print(death, actualdeath, deathNo)
-
-print("\n No of dead people: " + str(deathNo))
+# death = death_no(splited_sen)
+# if death == "None":
+#     actualdeath = death
+#     deathNo = 0
+# else:
+#     actualdeath = remove_date(death)
+#     deathNo = convertNum(death)
+# print("Death No: ")
+# print(death, actualdeath, deathNo)
+#
+# print("\n No of dead people: " + str(deathNo))
 #Finding the death number ends here
 
 
-injury = injury_no(splited_sen)
-if injury == "None":
-    actualinjury = "None"
-    injuryNo = 0
-else:
-    actualinjury = remove_date(injury)
-    injuryNo = convertNum(injury)
-print("Injury No:")
-print(injury, actualinjury, injuryNo)
-print("\n No of injured people: " + str(injuryNo))
+# injury = injury_no(splited_sen)
+# if injury == "None":
+#     actualinjury = "None"
+#     injuryNo = 0
+# else:
+#     actualinjury = remove_date(injury)
+#     injuryNo = convertNum(injury)
+# print("Injury No:")
+# print(injury, actualinjury, injuryNo)
+# print("\n No of injured people: " + str(injuryNo))
 
 tokenized_words = news.split_words()
 tagger = Tagger(tokenized_words)
 
 pos_tagged_sentences = tagger.tag()
 
-# print(pos_tagged_sentences)
-individual_sentences = nltk.sent_tokenize(news_story)
 
-for sent in individual_sentences:
-    words = nltk.word_tokenize(sent)
-    if("died" or "death" or "injured" or "injury" or "injuries") in words:
-        # print(sent)
-        chunked_sentence = nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent)))
-        # print(chunked_sentence)
-        for i in chunked_sentence.subtrees(filter = lambda x:x.label() == 'GPE'):
-            for i in i.leaves():
-                print("The location involved is: \n" + i[0] + "\n")
-
-data_extractor = DataExtractor(pos_tagged_sentences)
+data_extractor = DataExtractor(pos_tagged_sentences,news_story)
 
 sentences = news.split_story()#splits into sentences
 # data_extractor.deaths(nltk.sent_tokenize(news_story))
 data_extractor.day(news_story)
 
+print("From the modular component")
+print("--------------------------------")
+print(data_extractor.location())
+print(data_extractor.death_number())
+print(data_extractor.injury_number())
 
 # injuries = data_extractor.injury(nltk.sent_tokenize(news_story))
 

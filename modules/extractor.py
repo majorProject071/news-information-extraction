@@ -2,14 +2,20 @@ from __future__ import print_function
 
 import nltk
 import re
+import os
+import sys
 
 from modules.tagger import Tagger
+from modules.tokenizer import Tokenize
+from modules.getdeathinjury import *
+
 class DataExtractor:
     """ A class to extract the required data like location, month, deaths,etc.
         from the news story.
     """
-    def __init__(self,pos_tagged_words):
+    def __init__(self,pos_tagged_words,news_story):
         self.pos_tagged_words = pos_tagged_words
+        self.splitted_sentences = nltk.sent_tokenize(news_story)
 
     def location(self):
         """ Gets the location from the news story.
@@ -17,21 +23,21 @@ class DataExtractor:
             Inputs include the parts of speech tagged words.
             Output is the phrase containing the location of mishap.
         """
-        location_regex = "Location: {<IN><NNP|NN>+}"
+        # individual_sentences = nltk.sent_tokenize(news_story)
+        individual_sentences = self.splitted_sentences
 
-        location_regex = r"""
-                      Location:
-                        {<IN><NNP|NN>+}          # Chunk everything
-                        }<IN|NN>{      # Chink sequences of VBD and IN
-                  """
-        location_parser = nltk.RegexpParser(location_regex)
-        # location = location_parser.parse(self.pos_tagged_words)
-        # return location
+        locations = []
 
-        for i in self.pos_tagged_words:
-            location = location_parser.parse(i)
-            for i in location.subtrees(filter=lambda x:x.label() == 'Location'):
-                print(i.leaves())
+        for sent in individual_sentences:
+            words = nltk.word_tokenize(sent)
+            if("died" or "death" or "injured" or "injury" or "injuries") in words:
+                # print(sent)
+                chunked_sentence = nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent)))
+                # print(chunked_sentence)
+                for i in chunked_sentence.subtrees(filter = lambda x:x.label() == 'GPE'):
+                    for i in i.leaves():
+                        locations.append(i[0])
+        return(locations)
 
     def day(self,complete_news):
         """ Gets the day of mishap.
@@ -101,3 +107,31 @@ class DataExtractor:
         injury_parser = nltk.RegexpParser(injury_regex)
         injury_occurence = injury_parser.parse(injury_pos_tagged)
         print(injury_occurence)
+
+    def death_number(self):
+        death = death_no(self.splitted_sentences)
+        if death == "None":
+            actualdeath = death
+            deathNo = 0
+        else:
+            actualdeath = remove_date(death)
+            deathNo = convertNum(death)
+        # print("Death No: ")
+        # print(death, actualdeath, deathNo)
+        #
+        # print("\n No of dead people: " + str(deathNo))
+        return(deathNo)
+
+    def injury_number(self):
+        injury = injury_no(self.splitted_sentences)
+        if injury == "None":
+            actualinjury = "None"
+            injuryNo = 0
+        else:
+            actualinjury = remove_date(injury)
+            injuryNo = convertNum(injury)
+        # print("Injury No:")
+        # print(injury, actualinjury, injuryNo)
+        # print("\n No of injured people: " + str(injuryNo))
+
+        return(injuryNo)
