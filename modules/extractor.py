@@ -57,13 +57,20 @@ class DataExtractor:
 
         vehicle_regex = "Vehicle: {<.*><CD><.*><CD>}"
         vehicle_parser = nltk.RegexpParser(vehicle_regex)
-
+        vehicles = []
         for i in self.pos_tagged_words:
             vehicle = vehicle_parser.parse(i)
             for i in vehicle.subtrees(filter=lambda x:x.label() == 'Vehicle'):
+                vehicle = ""
                 for p in i.leaves():
-                    print(p[0],end=' ')
-                print("\n")
+                    # print(p[0],end=' ')
+                    # print(p)
+                    vehicle = vehicle + str(p[0]) + " "
+                    # vehicle = vehicle[:-1]
+                # print("\n")
+                vehicles.append(vehicle[:-1])
+
+        return(vehicles)
 
     def deaths(self,sentences):
         """ Gets the number of deaths from the news story.

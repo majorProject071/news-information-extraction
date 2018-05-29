@@ -100,5 +100,5 @@ print(data_extractor.injury_number())
 # injuries = data_extractor.injury(nltk.sent_tokenize(news_story))
 
 print("\nThe vehicles involved are:")
-data_extractor.vehicle()
+print(data_extractor.vehicle())
 # print("new")fdfd
