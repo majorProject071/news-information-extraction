@@ -61,6 +61,7 @@ Police suspect that the incident might have occurred after the bus hit a truck c
 vehicle_information = VehicleInformation(news_story)
 vehicle_information.make_gazetter()
 all_vehicles = vehicle_information.find_vehicles()
+print(all_vehicles)
 # ------Gets the vehicle name-----
 # document = unicode(news_story.decode('utf8'))
 # doc = nlp(document)
