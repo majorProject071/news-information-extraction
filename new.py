@@ -6,7 +6,7 @@ import sys
 from spacy.matcher import Matcher,PhraseMatcher
 from spacy.attrs import POS,LOWER,IS_PUNCT
 
-from modules.vehicles_gazetter import make_gazetter,find_vehicles
+from modules.vehicles_gazetter import VehicleInformation
 # from spacy import displacy
 # nlp = spacy.load('en_core_web_sm')
 nlp = en_core_web_sm.load()
@@ -58,9 +58,10 @@ Police suspect that the incident might have occurred after the bus hit a truck c
 
 # nlp = spacy.load('en_core_web_sm')
 # doc = nlp(sentences[0])
-make_gazetter()
-all_vehicles = find_vehicles(news_story)
-print(all_vehicles)
+vehicle_information = VehicleInformation(news_story)
+vehicle_information.make_gazetter()
+all_vehicles = vehicle_information.find_vehicles()
+# ------Gets the vehicle name-----
 # document = unicode(news_story.decode('utf8'))
 # doc = nlp(document)
 #
