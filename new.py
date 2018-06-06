@@ -27,7 +27,7 @@ injuryverb = ['injure', 'sustain', 'critical', 'hurt', 'wound', 'harm', 'trauma'
 # Police said that they have impounded the motorbike and arrested the rider."""
 
 
-news_story = """fifty eight persons died and 24 others were injured when a two-wheeler Lu 2 Kha 291 plunged into Trishuli River in between Fisling and Chumlingtar of Chitwan district on Wednesday.
+news_story = """fifty eight persons died and 24 others were injured when a bus Lu 2 Kha 291 plunged into Trishuli River in between Fisling and Chumlingtar of Chitwan district on Wednesday.
 There were 28 persons on board the ill-fated.
 Police suspect that the incident might have occurred after the bus hit a truck coming from the wrong lane.  Police have impounded the truck and arrested its driver for investigation.
 """
